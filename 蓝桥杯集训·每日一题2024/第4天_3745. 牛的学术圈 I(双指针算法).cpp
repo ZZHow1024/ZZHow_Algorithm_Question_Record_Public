@@ -12,20 +12,18 @@ using namespace std;
 int n, l;
 int w[N];
 
-int main()
-{
+int main() {
     cin >> n >> l;
-    for(int i = 1; i <= n; i++)
+    for (int i = 1; i <= n; i++)
         scanf("%d", &w[i]);
 
-    sort(w+1, w + n + 1, greater<int>());
+    sort(w + 1, w + n + 1, greater<int>());
 
     int res = 0;
-    for(int i = 1, j = n; i <= n; i++)
-    {
-        while(j && w[j] < i)
+    for (int i = 1, j = n; i <= n; i++) {
+        while (j && w[j] < i)
             j--;
-        if(w[i] >= i-1 && i - j <= l)
+        if (w[i] >= i - 1 && i - j <= l)
             res = i;
     }
 
