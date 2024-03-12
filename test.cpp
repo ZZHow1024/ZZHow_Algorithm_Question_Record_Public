@@ -1,44 +1,71 @@
-// 模板_快速排序
-// Created by DNX on 2024/3/7.
-//
+// 5_兽之泪(不是最优解)
+// Created by DNX on 2024/3/9.
 #include <iostream>
-#include <algorithm>
+#include<algorithm>
 
 #define N 100010
-
 using namespace std;
 
-void quickSort(int l, int r);
+bool check();
 
-int n;
-int arr[N];
+int k, n;
+int x[N], y[N];
+int z[N];
+bool state[N];
+int ans;
+int tar;
+bool all;
 
 int main() {
-    cin >> n;
-    for (int i = 0; i < n; i++)
-        cin >> arr[i];
+    cin >> k >> n;
+    for (int i = 0; i < k; i++)
+        cin >> x[i] >> y[i];
 
-    quickSort(0, n - 1);
+    memcpy(z, x, sizeof z);
 
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << ' ';
-    cout << endl;
+
+    int index, min;
+    for (int i = 0; i < k; i++) {
+        if (tar == n)
+            break;
+        if (check())
+            break;
+        index = (int) (min_element(z, z + k - 1) - z);
+        min = *min_element(z, z + k - 1);
+        ans += min;
+        ++tar;
+        if (!state[index]) {
+            state[index] = true;
+            z[index] = y[index];
+        }
+    }
+
+    if (tar != n && all) {
+        for (int i = 0; i < k; i++) {
+            if (tar == n)
+                break;
+            index = (int) (min_element(z, z + k) - z);
+            min = *min_element(z, z + k);
+            ans += min;
+            ++tar;
+            if (!state[index]) {
+                state[index] = true;
+                z[index] = y[index];
+            }
+        }
+    }
+
+    cout << ans << endl;
 
     return 0;
 }
 
-void quickSort(int l, int r) {
-    if (l >= r)
-        return;
-
-    int x = arr[(l + r) >> 1], i = l - 1, j = r + 1;
-    while (i < j) {
-        do i++; while (arr[i] < x);
-        do j--; while (arr[j] > x);
-        if (i < j)
-            swap(arr[i], arr[j]);
+bool check() {
+    for (int i = 0; i < k; i++) {
+        if (!state[i])
+            return false;
     }
 
-    quickSort(l, j);
-    quickSort(j + 1, r);
+    all = true;
+    return true;
 }
