@@ -1,5 +1,5 @@
-// dfs_以排列数字为例
-// 842. 排列数字
+// 模板_dfs_以排列数字为例
+// AcWing_842. 排列数字
 // Created by DNX on 2024/3/14.
 //
 #include <iostream>
