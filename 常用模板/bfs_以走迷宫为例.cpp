@@ -1,4 +1,5 @@
-// bfs_以走迷宫为例
+// 模板_bfs_以走迷宫为例
+// AcWing_844. 走迷宫
 // Created by DNX on 2024/3/21.
 //
 #include <iostream>
