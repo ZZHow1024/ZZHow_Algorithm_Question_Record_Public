@@ -15,7 +15,7 @@ int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> tmp;
-        if (tmp == 1)
+        if (tmp)
             ++ans;
     }
 
